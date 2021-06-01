@@ -3,8 +3,9 @@ package com.amazon.app.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.amazon.app.beans.Product;
 //@Component
@@ -15,6 +16,10 @@ public class ProductDAO {
 		this.name=name;
 		System.out.println(name);
 	}
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;//Spring JDBC 
+	
 	
 	static List<Product> products;
 	

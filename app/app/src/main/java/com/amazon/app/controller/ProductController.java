@@ -31,4 +31,9 @@ public class ProductController {
 		mv.addObject("message2", "MESSAGE2");
 		return mv;
 	}
+	
+	@GetMapping("/getException") // same way we have postmapping and rest. latest usage
+	public ModelAndView getException() throws Exception {
+		throw new Exception("This is Expected!!! ");
+	}
 }
