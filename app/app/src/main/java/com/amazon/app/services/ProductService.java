@@ -25,6 +25,14 @@ public class ProductService {
 		return productDAO.getProducts();
 	}
 	
+	public List<Product> getAllProductsByName( String productName) throws Exception{
+		//System.out.println(productDAO.name);
+		//return productDAO.getProducts();
+		return productDAO.getProduct(productName);
+	}
 	
+	public boolean addProduct(Product product) {
+		return productDAO.addProduct(product);
+	}
 	
 }

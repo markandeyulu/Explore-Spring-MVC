@@ -1,20 +1,17 @@
-package com.amazon.app.controller;
+package com.spring.jpa.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.amazon.app.beans.Product;
-import com.amazon.app.services.ProductService;
+import com.spring.jpa.model.Product;
+import com.spring.jpa.services.ProductService;
 
 //Back Controller
 @Controller
@@ -28,7 +25,7 @@ public class ProductController {
 	@ResponseBody// to append this with response header
 	/*@RequestMapping(value = "/getproduct", method=RequestMethod.GET) //by default GET
 */	
-	@GetMapping(value = "/getproduct/{id}"/*, consumes = "text/plain"*/, produces = MediaType.APPLICATION_JSON_VALUE) // same way we have postmapping and rest. latest usage
+	@GetMapping(value = "/getproduct/{id}"/*, consumes = "text/plain"*/, produces = "application/json") // same way we have postmapping and rest. latest usage
 	public String getMessage(@PathVariable String id) {
 		return "Welcome :  " + id;
 	}
@@ -48,25 +45,31 @@ public class ProductController {
 	}
 	
 	
-	@GetMapping("/product")
+	@GetMapping("/getAllProducts")
 	@ResponseBody
 	public List<Product> getProductDetails() {
 		return productService.getAllProducts();
 	}
 	
-	@GetMapping("/product/{productName}")//URI templating name - both path and url template is for diff purpose
-	@ResponseBody
-	public List<Product> getProductDetails(@PathVariable String productName) throws Exception {// if you want diff name give inside brackets @pathvariable ( "samplename" String productname)
-		return productService.getAllProductsByName(productName);
-	}
-	
-	
-	@PostMapping("/insertproduct")//URI templating name - both path and url template is for diff purpose
-	@ResponseBody //Body type should be Application/Json in rest client
-	//@RequestBody - to read request envelope which will have request header
-	public boolean insertProduct(@RequestBody Product product) {// if you want diff name give inside brackets @pathvariable ( "samplename" String productname)
-		return productService.addProduct(product);
-	}
+	/*
+	 * @GetMapping("/product/{productName}")//URI templating name - both path and
+	 * url template is for diff purpose
+	 * 
+	 * @ResponseBody public List<Product> getProductDetails(@PathVariable String
+	 * productName) throws Exception {// if you want diff name give inside
+	 * brackets @pathvariable ( "samplename" String productname) return
+	 * productService.getAllProductsByName(productName); }
+	 * 
+	 * 
+	 * @PostMapping("/insertproduct")//URI templating name - both path and url
+	 * template is for diff purpose
+	 * 
+	 * @ResponseBody //Body type should be Application/Json in rest client
+	 * //@RequestBody - to read request envelope which will have request header
+	 * public boolean insertProduct(@RequestBody Product product) {// if you want
+	 * diff name give inside brackets @pathvariable ( "samplename" String
+	 * productname) return productService.addProduct(product); }
+	 */
 	
 	
 }
